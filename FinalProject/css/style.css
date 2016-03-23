@@ -1,0 +1,32 @@
+body {
+	background: url(../images/bg.jpg);
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 40px;
+    background-color: #000;
+
+}
+.footer p {
+	text-align: center;
+	font-size: 20px;
+	color: #fff
+}
+
+.navbar{
+	background-color: #000; 
+}
+
+nav a {
+	
+	 font-size:1.3em;
+	color:#A3793D;
+	 display: block;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color: #ffffff;  
+}
