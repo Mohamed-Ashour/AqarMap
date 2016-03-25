@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
+{% load staticfiles %}
 
 {% block title %} title {% endblock %}
 
 {% block content %}
 
-    content goes here ...
+    content goes here ..
+    <img src="{% static 'pin.jpg' %}" alt="">
 
 {% endblock content %}
