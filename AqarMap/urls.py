@@ -20,10 +20,13 @@ from aqar import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^properties$', views.properties),
+    url(r'^properties/(?P<id>\d+)/', views.property_details),
     url(r'^login$', views.login),
     url(r'^logout$', views.logout),
     url(r'^register$', views.register),
     url(r'^projects$', views.projects),
+    url(r'^projects/(?P<id>\d+)/', views.project_details),
     url(r'^notifications$', views.notifications),
     url(r'^add-project$', views.add_project),
     url(r'^add-property$', views.add_property),

@@ -7,5 +7,5 @@ class displayAdmin(admin.ModelAdmin):
 
 admin.site.register(user_profile)
 admin.site.register(property, displayAdmin)
-admin.site.register(project)
+admin.site.register(project, displayAdmin)
 admin.site.register(project_property, displayAdmin)
