@@ -56,6 +56,7 @@ def add_project(request):
 def notifications(request):
     return render(request, 'notifications.html')
 
+
 def listing(request):
     return render(request, 'listing.html')
 
