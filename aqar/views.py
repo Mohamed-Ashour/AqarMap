@@ -49,8 +49,26 @@ def add_property(request):
     return render(request, 'add_property.html')
 
 
+def project(request):
+    return  render(request,'add_project.html')
+
+
+
 def add_project(request):
-    return render(request, 'add_project.html')
+    if request.method== 'POST':
+        pro_name=request.POST['p_n']
+        u_email=request.POST['u_email']
+        p_loc=request.POST['p_loc']
+        p_details=request.POST['p_details']
+        p_services=request.POST['p_services']
+        p_fac=request.POST['p_fac']
+        p_price=request.POST['p_price']
+        u_id=request.POST['u_id']
+        p_pic=request.FILES.get('p_pic')
+        obj=proj(Pro_Name=pro_name,detailes=p_details,location=p_loc,services=p_services,facilities=p_fac,img=p_pic,exp_price=p_price,p_email=u_email,user_id_id=u_id)
+        obj.save()
+
+    return render(request, 'add_property.html')
 
 
 def notifications(request):
