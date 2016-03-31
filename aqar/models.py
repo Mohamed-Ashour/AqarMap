@@ -54,3 +54,23 @@ class project_property(models.Model):
     facilities=models.CharField(max_length=100)
     picture=models.CharField(max_length=100)
     payment=models.CharField(max_length=100)
+
+
+
+class notifier(models.Model):
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    location=models.CharField(max_length=100)
+    property_type=models.CharField(max_length=100)
+    section=models.CharField(max_length=100)
+    min_price=models.IntegerField()
+    max_price=models.IntegerField()
+
+
+#class user_Notifier(models.Model):
+ #   user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+  #  pro_type=models.CharField(max_length=100)
+   # pro_city=models.CharField(max_length=100)
+    #pro_area=models.CharField(max_length=100)
+    #pro_Roller=models.CharField(max_length=100)
+    #pro_min=models.IntegerField(default=0)
+    #pro_max=models.IntegerField(default=0)

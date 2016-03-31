@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from aqar.models import property, user_profile, User, project, project_property
 
 
