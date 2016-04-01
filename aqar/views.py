@@ -1,10 +1,14 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render,render_to_response
+from django.shortcuts import render, render_to_response
 from aqar.models import property, user_profile, User, project, project_property
-
+from forms import prop_search_form
 
 def index(request):
-    return render(request, 'index.html')
+    form = prop_search_form()
+    context = {
+        'form':form
+    }
+    return render(request, 'index.html', context)
 
 
 def properties(request):
@@ -54,8 +58,11 @@ def add_project(request):
 
 
 def notifications(request):
+    form = prop_search_form()
+    return render(request, 'notifications.html', {'form':form})
 
-    return render(request, 'notifications.html')
+
+
 
 
 def listing(request):
