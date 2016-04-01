@@ -32,5 +32,7 @@ urlpatterns = [
     url(r'^add-project$', views.add_project),
     url(r'^add-property$', views.add_property),
     url(r'^admin/', admin.site.urls),
+    url(r'^add_project/', views.add_project),
+    url(r'^project/', views.project),
 
 ]

@@ -35,32 +35,41 @@ class property(models.Model):
     picture=models.CharField(max_length=100)
     payment=models.CharField(max_length=100)
 
-class project(models.Model):
+class proj(models.Model):
     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+    Pro_Name=models.CharField(max_length=200)
     detailes=models.CharField(max_length=500)
+    location=models.CharField(max_length=100)
     services=models.CharField(max_length=100)
     facilities=models.CharField(max_length=100)
-    location=models.CharField(max_length=100)
-    title=models.CharField(max_length=300)
+    img = models.ImageField(upload_to="photos/",null=True, blank=True)
+    exp_price=models.IntegerField()
+    p_email=models.CharField(max_length=500,null=True)
 
 
-class project_property(models.Model):
-    project_id=models.ForeignKey(project, on_delete=models.CASCADE)
-    category=models.CharField(max_length=100)
-    type=models.CharField(max_length=100)
+
+class pr_property(models.Model):
+    project_id=models.ForeignKey(proj, on_delete=models.CASCADE)
+    prop_type=models.CharField(max_length=100)
+    p_section=models.CharField(max_length=100)
+    sellerRole=models.CharField(max_length=100)
+    size=models.IntegerField(default=0)
+    price=models.IntegerField(default=0)
     title=models.CharField(max_length=300)
-    sellerType=models.CharField(max_length=100)
-    size=models.CharField(max_length=100)
-    price=models.IntegerField()
     description=models.CharField(max_length=500)
     city=models.CharField(max_length=100)
     area=models.CharField(max_length=100)
     street=models.CharField(max_length=100)
-    services=models.CharField(max_length=100)
-    facilities=models.CharField(max_length=100)
-    picture=models.CharField(max_length=100)
+    view=models.CharField(max_length=100)
+    rooms=models.IntegerField(default=0)
+    floor=models.IntegerField(default=0)
+    Baths=models.IntegerField(default=0)
+    year_bulit=models.IntegerField(default=0)
+    finish_type=models.IntegerField(default=0)
+    img = models.ImageField(upload_to="photos/",null=True, blank=True)
+    video=models.URLField(default=True)
+    phone=models.IntegerField(default=0)
     payment=models.CharField(max_length=100)
-
 
 class notifier(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
