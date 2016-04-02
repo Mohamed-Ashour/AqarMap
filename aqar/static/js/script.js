@@ -33,56 +33,101 @@ $(function(){
 
     $('#min_price').change(function(){
         min_price = parseInt($('#min_price').val());
+        $('.max_option').removeClass('hidden');
         switch (min_price) {
             case 100000:
-                $('option').remove('.max_100')
+                $('.max_100').addClass('hidden');
                 break;
             case 250000:
-                $('option').remove('.max_250, .max_100')
+                $('.max_100').addClass('hidden');
+                $('.max_250').addClass('hidden');
                 break;
             case 500000:
-                $('option').remove('.max_500, .max_250, .max_100')
+                $('.max_100').addClass('hidden');
+                $('.max_250').addClass('hidden');
+                $('.max_500').addClass('hidden');
                 break;
             case 750000:
-                $('option').remove('.max_750, .max_500, .max_250, .max_100')
+                $('.max_100').addClass('hidden');
+                $('.max_250').addClass('hidden');
+                $('.max_500').addClass('hidden');
+                $('.max_750').addClass('hidden');
                 break;
             case 1000000:
-                $('option').remove('.max_1000, .max_750, .max_500, .max_250, .max_100')
+                $('.max_100').addClass('hidden');
+                $('.max_250').addClass('hidden');
+                $('.max_500').addClass('hidden');
+                $('.max_750').addClass('hidden');
+                $('.max_1000').addClass('hidden');
                 break;
             case 2000000:
-                $('option').remove('.max_2000, .max_1000, .max_750, .max_500, .max_250, .max_100')
+                $('.max_100').addClass('hidden');
+                $('.max_250').addClass('hidden');
+                $('.max_500').addClass('hidden');
+                $('.max_750').addClass('hidden');
+                $('.max_1000').addClass('hidden');
+                $('.max_2000').addClass('hidden');
                 break;
             case 5000000:
-                $('option').remove('.max_5000, .max_2000, .max_1000, .max_750, .max_500, .max_250, .max_100')
+                $('.max_100').addClass('hidden');
+                $('.max_250').addClass('hidden');
+                $('.max_500').addClass('hidden');
+                $('.max_750').addClass('hidden');
+                $('.max_1000').addClass('hidden');
+                $('.max_2000').addClass('hidden');
+                $('.max_5000').addClass('hidden');
                 break;
         }
     });
 
-    //$('#max_price').change(function(){
-    //    max_price = parseInt($('#max_price').val());
-    //    switch (max_price) {
-    //        case 5000000:
-    //            $('option').remove('.min_5000')
-    //            break;
-    //        case 2000000:
-    //            $('option').remove('.min_250, .min_100')
-    //            break;
-    //        case 1000000:
-    //            $('option').remove('.min_500, .min_250, .min_100')
-    //            break;
-    //        case 750000:
-    //            $('option').remove('.min_750, .min_500, .min_250, .min_100')
-    //            break;
-    //        case 500000:
-    //            $('option').remove('.min_1000, .min_750, .min_500, .min_250, .min_100')
-    //            break;
-    //        case 200000:
-    //            $('option').remove('.min_2000, .min_1000, .min_750, .min_500, .min_250, .min_100')
-    //            break;
-    //        case 100000:
-    //            $('option').remove('.min_5000, .min_2000, .min_1000, .min_750, .min_500, .min_250, .min_100')
-    //            break;
-    //    }
-    //});
+    $('#max_price').change(function(){
+        max_price = parseInt($('#max_price').val());
+        $('.min_option').removeClass('hidden');
+
+        switch (max_price) {
+            case 100000:
+                $('.min_100').addClass('hidden');
+                $('.min_250').addClass('hidden');
+                $('.min_500').addClass('hidden');
+                $('.min_750').addClass('hidden');
+                $('.min_1000').addClass('hidden');
+                $('.min_2000').addClass('hidden');
+                $('.min_5000').addClass('hidden');
+                break;
+            case 250000:
+                $('.min_250').addClass('hidden');
+                $('.min_500').addClass('hidden');
+                $('.min_750').addClass('hidden');
+                $('.min_1000').addClass('hidden');
+                $('.min_2000').addClass('hidden');
+                $('.min_5000').addClass('hidden');
+                break;
+            case 500000:
+                $('.min_500').addClass('hidden');
+                $('.min_750').addClass('hidden');
+                $('.min_1000').addClass('hidden');
+                $('.min_2000').addClass('hidden');
+                $('.min_5000').addClass('hidden');
+                break;
+            case 750000:
+                $('.min_750').addClass('hidden');
+                $('.min_1000').addClass('hidden');
+                $('.min_2000').addClass('hidden');
+                $('.min_5000').addClass('hidden');
+                break;
+            case 1000000:
+                $('.min_1000').addClass('hidden');
+                $('.min_2000').addClass('hidden');
+                $('.min_5000').addClass('hidden');
+                break;
+            case 2000000:
+                $('.min_2000').addClass('hidden');
+                $('.min_5000').addClass('hidden');
+                break;
+            case 5000000:
+                $('.min_5000').addClass('hidden');
+                break;
+        }
+    });
 
 });
