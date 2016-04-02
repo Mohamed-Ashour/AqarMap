@@ -4,10 +4,33 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-category_ops=(('flat','Flat'), ('villa', 'Villa'),)
+category_ops=(('apartment','Apartment'), ('building', 'Building'), ('other', 'Other'), ('land', 'Land'),
+              ('office', 'Office'), ('store', 'Store'), ('villa', 'Villa'))
 type_ops=(('for_sell','For Rell'), ('for_rent', 'For Rent'),)
-city_ops=(('cairo', 'Cairo'), ('alexandria', 'Alexandria'),)
-area_ops=(('', ''), ('', ''),)
+
+city_ops=(('cairo', 'Greater Cairo'), ('alexandria', 'Alexandria'), ('Ain El Sokhna', 'Ain El Sokhna'),
+          ('Hurghada / Red Sea', 'Hurghada / Red Sea'), ('Sharm el Sheikh', 'Sharm el Sheikh'),
+          ('Dakahlia / Mansoura', 'Dakahlia / Mansoura'), ('Sharqia / Zagazig', 'Sharqia / Zagazig'),
+          ('Gharbia / Tanta', 'Gharbia / Tanta'), ('Ismailia', 'Ismailia'), ('Dumiat', 'Dumiat'), ('Suez', 'Suez'),
+          ('Beheira / Damanhur', 'Beheira / Damanhur'), ('Aswan', 'Aswan'), ('Luxor', 'Luxor'), ('Asyut', 'Asyut'),
+          ('Monufia / Shebeen El-Kom', 'Monufia'), ('Qina', 'Qina'), ('Sohag', 'Sohag'),
+          ('Sinai / Arish', 'Sinai / Arish'), ('El Fayoum', 'El Fayoum'), ('Port Said', 'Port Said'),
+          ('Kafr el-Sheikh', 'Kafr el-Sheikh'), ('Bani Suef', 'Bani Suef'), ('El minia', 'El minia'),
+          ('New Valley', 'New Valley'), ('Qalyubia / Banha', 'Qalyubia / Banha'),)
+
+# area_ops=(('6th Of October', '6th Of October'), ('El Sheikh Zayed City', 'El Sheikh Zayed City'),
+#           ('Heliopolis', 'Heliopolis'), ('Nasr City', 'Nasr City'), ('El Maadi', 'El Maadi'),
+#           ('El Shorouk & New Heliopolis', 'El Shorouk & New Heliopolis'), ('El Oubour', 'El Oubour'),
+#           ('El Hadabh El Wosta', 'El Hadabh El Wosta'), ('Rehab & Madinaty', 'Rehab & Madinaty'), ('Faisal', 'Faisal'),
+#           ('Alex-Cairo Desert Road', 'Alex-Cairo Desert Road'), ('El Zamalek', 'El Zamalek'),
+#           ('El Mohandesen', 'El Mohandesen'), ('Dokki', 'Dokki'), ('El Haram', 'El Haram'),
+#           ('El Jizah district', 'El Jizah district'), ('Mokattam', 'Mokattam'), ('Helwan', 'Helwan'),
+#           ('Ain Shams', 'Ain Shams'), ('Badr City', 'Badr City'), ('10th of Ramadan', '10th of Ramadan'),
+#           ('Garden City', 'Garden City'), ('Downtown', 'Downtown'), ('El Zaytun', 'El Zaytun'),
+#           ('EL Koba Gardens', 'EL Koba Gardens'), ('Hadayek El Ahram', 'Hadayek El Ahram'), ('Shoubra', 'Shoubra'),
+#           ('Imbaba', 'Imbaba'), ('El Agouza', 'El Agouza'), ('Manial', 'Manial'),  ('El Abbasiya', 'El Abbasiya'),
+#           ('15th of May', '15th of May'), ('Other Neighborhoods', 'Other Neighborhoods'),)
+
 street_ops=(('', ''), ('', ''),)
 
 # Create your models here.
@@ -20,7 +43,7 @@ class user_profile(models.Model):
 
 class property(models.Model):
     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
-    category=models.CharField(max_length=100, choices=category_ops)
+    category=models.CharField(max_length=100, choices=category_ops, blank=False)
     type=models.CharField(max_length=100, choices=type_ops)
     sellerType=models.CharField(max_length=100)
     size=models.CharField(max_length=100)

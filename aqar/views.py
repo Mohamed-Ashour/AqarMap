@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, render_to_response
-from aqar.models import property, user_profile, User, project, project_property
+from aqar.models import property, user_profile, User, proj, pr_property
 from forms import prop_search_form
 
 def index(request):
@@ -37,7 +37,7 @@ def register(request):
 
 
 def projects(request):
-    projs = project.objects.all()
+    projs = proj.objects.all()
     return render(request, 'projects.html', {'projects':projs})
 
 

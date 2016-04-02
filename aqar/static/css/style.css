@@ -1,5 +1,5 @@
 body {
-	background: url(../images/bg.jpg);
+	background-image: url(../images/bg1.jpg);
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -23,9 +23,9 @@ body {
 
 nav a {
 
-	 font-size:1.3em;
-	color:#A3793D;
-	 display: block;
+    font-size:1.3em;
+    color:#A3793D;
+    display: block;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 	color: #ffffff;
@@ -47,4 +47,22 @@ nav a {
 	border-bottom-style: outset;
 	border-bottom-color: black;
 
+}
+
+.margin_10 {
+	margin-right:10px;
+}
+
+
+.submit_btn {
+    margin-top: 10px;
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.form-group{
+    width: 100%;
 }
