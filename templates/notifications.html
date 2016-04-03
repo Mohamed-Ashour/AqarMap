@@ -3,9 +3,27 @@
 {% block title %} Notification {% endblock %}
 
 {% block content %}
-    <div class="page-header ">
+
+    <br><br><br>
+
+    <div class="row" >
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs">
+                <li class="tab-list active">
+                    <a data-toggle="tab" href="#Notifiers">My Notifiers</a>
+                </li>
+                <li class="tab-list">
+                    <a data-toggle="tab" href="#Property">Property Notifier </a>
+                </li>
+
+            </ul>
+
+            <div class="tab-content">
+                <div id="Notifiers" class="tab-pane active">
+                     <div class="page-header ">
         <h2> My Notifiers </h2>
     </div>
+        {% if noty %}
          <table  class="table table-hover">
             <tr class="info">
                 <th>Location </th>
@@ -16,145 +34,29 @@
                 <th>Action</th>
 
             </tr>
-
-                <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>  </td>
-                <td><button class="btn btn-danger">Remove</button> </td>
-                </tr>
-
-
-
+                {% for n in noty %}
+                     <tr>
+                        <td>{{ n.location }} </td>
+                        <td>{{ n.property_type }} </td>
+                        <td>{{ n.section }} </td>
+                        <td>{{ n.min_price }} </td>
+                        <td>{{ n.max_price }} </td>
+                        <td><a href="/delFormNoty/{{ n.id }}" class="btn btn-danger" role="button">Remove</a></td>
+                    </tr>
+                {% endfor %}
         </table>
+    {% else %}
+    <p> no notification</p>
+    {% endif %}
 
-  <div class="page-header">
-    <h2>Property Notifier</h2>
-  </div>
-
-    <div class="con">
-
-
-
-     <select id="aqarmap_notifier_propertyType" name="typePro">
-        <option value="Apartment">Apartment</option>
-        <option value="Building">Building</option>
-        <option value="Chalet">Chalet</option>
-        <option value="Furnished Apartment">Furnished Apartment</option>
-        <option value="Other">Other</option>
-        <option value="Land">Land</option>
-        <option value="Office">Office</option>
-        <option value="Store">Store</option>
-        <option value="Villa">Villa</option>
-     </select>
-        <select >
-            <option value="Greater Cairo" selected="selected">Greater Cairo</option>
-            <option value="Alexandria" >Alexandria</option>
-            <option value="North Coast" >North Coast</option>
-            <option value="Marsa Matruh" >Marsa Matruh</option>
-            <option value="Ain El Sokhna" >Ain El Sokhna</option>
-            <option value="Hurghada / Red Sea" >Hurghada / Red Sea</option>
-            <option value="Ras Sidr" >Ras Sidr</option>
-            <option value="Sharm el Sheikh" >Sharm el Sheikh</option>
-            <option value="Dakahlia / Mansoura" >Dakahlia / Mansoura</option>
-            <option value="Sharqia / Zagazig" >Sharqia / Zagazig</option>
-            <option value="Gharbia / Tanta" >Gharbia / Tanta</option>
-            <option value="Ismailia" >Ismailia</option>
-            <option value="Dumiat" >Dumiat</option>
-            <option value="Suez" >Suez</option>
-            <option value="Beheira / Damanhur" >Beheira / Damanhur</option>
-            <option value="Aswan" >Aswan</option>
-            <option value="Luxor" >Luxor</option>
-            <option value="Asyut" >Asyut</option>
-            <option value="Monufia / Shebeen El-Kom" >Monufia / Shebeen El-Kom</option>
-            <option value="Qina" >Qina</option>
-            <option value="Sohag" >Sohag</option>
-            <option value="Sinai / Arish" >Sinai / Arish</option>
-            <option value="El Fayoum" >El Fayoum</option>
-            <option value="Port Said" >Port Said</option>
-            <option value="Kafr el-Sheikh" >Kafr el-Sheikh</option>
-            <option value="Bani Suef">Bani Suef</option>
-            <option value="El minia" >El minia</option>
-            <option value="New Valley" >New Valley</option>
-            <option value="Qalyubia / Banha" >Qalyubia / Banha</option>
-        </select>
-
-        <!-- end ngRepeat: item in selections -->
-        <span class="ng-scope">
-            <label>
-                <select >
-                    <option label="New Cairo Fifth District" selected="selected" value="0">New Cairo Fifth District
-                    </option>
-                    <option label="6th Of October" value="1">6th Of October</option>
-                    <option label="El Sheikh Zayed City" value="2">El Sheikh Zayed City</option>
-                    <option label="Heliopolis" value="3">Heliopolis</option>
-                    <option label="Nasr City" value="4">Nasr City</option>
-                    <option label="El Maadi" value="5">El Maadi</option>
-                    <option label="El Shorouk &amp; New Heliopolis" value="6">El Shorouk &amp; New Heliopolis</option>
-                    <option label="El Oubour" value="7">El Oubour</option>
-                    <option label="El Hadabh El Wosta" value="8">El Hadabh El Wosta</option>
-                    <option label="Rehab &amp; Madinaty" value="9">Rehab &amp; Madinaty</option>
-                    <option label="Faisal" value="10">Faisal</option>
-                    <option label="Alex-Cairo Desert Road" value="11">Alex-Cairo Desert Road</option>
-                    <option label="El Zamalek" value="12">El Zamalek</option>
-                    <option label="El Mohandesen" value="13">El Mohandesen</option>
-                    <option label="Dokki" value="14">Dokki</option>
-                    <option label="El Haram" value="15">El Haram</option>
-                    <option label="El Jizah district" value="16">El Jizah district</option>
-                    <option label="Mokattam" value="17">Mokattam</option>
-                    <option label="Helwan" value="18">Helwan</option>
-                    <option label="Ain Shams" value="19">Ain Shams</option>
-                    <option label="Badr City" value="20">Badr City</option>
-                    <option label="10th of Ramadan" value="21">10th of Ramadan</option>
-                    <option label="Garden City" value="22">Garden City</option>
-                    <option label="Downtown" value="23">Downtown</option>
-                    <option label="El Zaytun" value="24">El Zaytun</option>
-                    <option label="EL Koba Gardens" value="25">EL Koba Gardens</option>
-                    <option label="Hadayek El Ahram" value="26">Hadayek El Ahram</option>
-                    <option label="Shoubra" value="27">Shoubra</option>
-                    <option label="Imbaba" value="28">Imbaba</option>
-                    <option label="El Agouza" value="29">El Agouza</option>
-                    <option label="Manial" value="30">Manial</option>
-                    <option label="El Abbasiya" value="31">El Abbasiya</option>
-                    <option label="15th of May" value="32">15th of May</option>
-                    <option label="Other Neighborhoods" value="33">Other Neighborhoods</option>
-                </select>
-            </label>
-        </span>
-
-        <label for="aqarmap_notifier_section"></label><select id="aqarmap_notifier_section" name="section" required="required" >
-
-            <option value="1">For Sale</option>
-            <option value="2">For Rent</option>
-        </select>
-        <label>
-            <select class="ng-pristine ng-invalid ng-invalid-required" required="required">
-                <option class="" value="">(Min Price)</option>
-                <option label="100,000" value="0">100,000</option>
-                <option label="250,000" value="1">250,000</option>
-                <option label="500,000" value="2">500,000</option>
-                <option label="750,000" value="3">750,000</option>
-                <option label="1,000,000" value="4">1,000,000</option>
-                <option label="2,000,000" value="5">2,000,000</option>
-                <option label="5,000,000" value="6">5,000,000</option>
-            </select>
-        </label>
-        <label>
-            <select class="ng-pristine ng-invalid ng-invalid-required" required="required">
-                <option class="" value="">(Max Price)</option>
-                <option label="100,000" value="0">100,000</option>
-                <option label="250,000" value="1">250,000</option>
-                <option label="500,000" value="2">500,000</option>
-                <option label="750,000" value="3">750,000</option>
-                <option label="1,000,000" value="4">1,000,000</option>
-                <option label="2,000,000" value="5">2,000,000</option>
-                <option label="5,000,000" value="6">5,000,000</option>
-            </select>
-        </label>
-
-
+                </div>
+                <div id="Property" class="tab-pane">
+                      <div class="page-header">
+                        <h2>Property Notifier</h2>
+                      </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock content %}

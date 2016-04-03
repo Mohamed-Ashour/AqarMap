@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^login$', views.login),
     url(r'^listing$', views.listing),
     url(r'^logout$', views.logout),
+    url(r'^delFormListing/(?P<uid>\d+)', views.delFormListing),
+    url(r'^delFormNoty/(?P<uid>\d+)', views.delFormNoty),
     url(r'^register$', views.register),
     url(r'^projects$', views.projects),
     url(r'^projects/(?P<id>\d+)/', views.project_details),

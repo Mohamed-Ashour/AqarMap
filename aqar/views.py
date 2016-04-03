@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, render_to_response
-from aqar.models import property, user_profile, User, proj, pr_property
+from aqar.models import property, user_profile, User, proj, pr_property, DelListing, notifier
 from forms import prop_search_form
 
 def index(request):
@@ -80,14 +80,47 @@ def notifications(request):
     return render(request, 'notifications.html', {'form':form})
 
 
-
-
-
 def listing(request):
    # pro=property.objects.all().filter(user_id=user_profile.user)
     pro=property.objects.all().filter(user_id=1)
     #return HttpResponse(pro.title)
     return render_to_response('listing.html',{'pro':pro})
     #return render(request,"listing.html")
+
+
+
+#def notifications(request):
+ #   noty=notifier.objects.all().filter(user_id=1)
+  #  return render_to_response('notifications.html',{'noty':noty})
+
+
+def listing(request):
+   # pro=property.objects.all().filter(user_id=user_profile.user)
+    pro=property.objects.all().filter(user_id=1)
+    allProjectDeleted=DelListing.objects.all().filter(user_id=1)
+    return render_to_response('listing.html',{'pro':pro,'allProjectDeleted':allProjectDeleted})
+    #return render(request,"listing.html")
+
+def delFormListing(request,uid):
+    delitem=property.objects.get(id=uid)
+    titleD=delitem.title
+    categoryD=delitem.category
+    sizeD=delitem.size
+    priceD=delitem.price
+    saveData=DelListing(user_id_id=1,title=titleD ,propertyType=categoryD,size= sizeD,price= priceD)
+    saveData.save()
+    property.objects.filter(id=uid).delete()
+    return render_to_response('listing.html')
+
+
+def delFormNoty(request,uid):
+    notifier.objects.filter(id=uid).delete()
+    noty=notifier.objects.all().filter(user_id=1)
+    return  render_to_response('notifications.html',{'noty':noty})
+
+
+
+
+
 
 

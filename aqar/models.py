@@ -103,6 +103,12 @@ class notifier(models.Model):
     max_price=models.IntegerField()
 
 
+class DelListing(models.Model):
+     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+     title=models.CharField(max_length=300)
+     propertyType=models.CharField(max_length=100)
+     size=models.IntegerField()
+     price=models.IntegerField()
 #class user_Notifier(models.Model):
  #   user_id=models.ForeignKey(User, on_delete=models.CASCADE)
   #  pro_type=models.CharField(max_length=100)

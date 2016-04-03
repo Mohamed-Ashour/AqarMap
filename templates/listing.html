@@ -3,8 +3,10 @@
 {% block title %} Listing {% endblock %}
 
 {% block content %}
+
     <div class="container">
     <br>
+
          <div class="row">
     <!-------------------------------------------------------------------->
     <div class="col-sm-12"  >
@@ -13,12 +15,10 @@
 						<li class="tab-list active">
 							<a data-toggle="tab" href="#Name">Listings</a>
 						</li>
-						<li class="tab-list">
-							<a data-toggle="tab" href="#Description">Expired Listings </a>
-						</li>
+
 
 						<li class="tab-list">
-							<a data-toggle="tab" href="#Review">Deleted Listings </a>
+							<a data-toggle="tab" href="#Review" >Deleted Listings </a>
 						</li>
 					</ul>
     <br><br><br>
@@ -50,7 +50,17 @@
                                 <td> 0 </td>
                                 <td> 0 </td>
                                 <td> 0 </td>
-                                <td> </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Action
+                                        <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                          <li><a href="">View</a></li>
+                                          <li><a href="/delFormListing/{{ one_part.id }} ">Delete</a></li>
+                                          <li><a href="#">Edite Details</a></li>
+                                        </ul>
+                                      </div>
+                                </td>
                                 </tr>
 
                             {% endfor %}
@@ -60,15 +70,33 @@
                         {% else %}
                             <p> You do not have any listings yet</p>
                         {% endif %}
-
-
-
 						</div>
-						<div id="Description" class="tab-pane">
-							Some Info
-						</div>
+
+
 						<div id="Review" class="tab-pane">
-							Some
+                            {% if allProjectDeleted %}
+                            <table class="table table-hover" >
+                                <tr class="info">
+                                    <th>Listing ID </th>
+                                    <th> Title</th>
+                                    <th>Property Type</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                </tr>
+                                {% for one_part in allProjectDeleted %}
+                                <tr>
+                                    <td>{{ one_part.id }}</td>
+                                    <td>{{ one_part.title }}</td>
+                                    <td>{{ one_part.propertyType }}</td>
+                                    <td>{{ one_part.size  }}</td>
+                                    <td>{{ one_part.price }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+
+                            {% else %}
+                                <p> No Data IN DataBase </p>
+                            {% endif %}
 						</div>
 					</div>
 
