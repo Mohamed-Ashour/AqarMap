@@ -89,9 +89,9 @@ def listing(request):
 
 
 
-#def notifications(request):
- #   noty=notifier.objects.all().filter(user_id=1)
-  #  return render_to_response('notifications.html',{'noty':noty})
+def notifications(request):
+    noty=notifier.objects.all().filter(user_id=1)
+    return render_to_response('notifications.html',{'noty':noty})
 
 
 def listing(request):
@@ -119,7 +119,12 @@ def delFormNoty(request,uid):
     return  render_to_response('notifications.html',{'noty':noty})
 
 
-
+def AddNotifiy(request):
+    form = prop_search_form()
+    context = {
+    'form':form
+    }
+    return render_to_response('notifications.html',context)
 
 
 
