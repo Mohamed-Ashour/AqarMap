@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %} Edit Product {% endblock %}
+{% block content %}
+<h1>Add Project</h1>
+<form action="/edit_Pdata/" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+        <table align="center" cellpadding="10">
+            {% for data in pro %}
+                <input type="hidden" value="{{ data.id }} " name="p_id"/>
+                <input type="hidden" value="{{ data.user_id_id }}" name="user_id"/>
+            <tr>
+                <td>Project Name</td>
+                <td><input type="text" name="p_n" required value="{{data.Pro_Name}}"></td>
+
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="u_email" required value="{{ data.p_email}}"></td>
+            </tr>
+            <tr>
+              <td>Location</td>
+                <td><input type="text" name="p_loc" value="{{ data.location }}" required></td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td><textarea rows="10" cols="50" name="p_details" required ></textarea></td>
+            </tr>
+            <tr>
+                <td>Services</td>
+                <td><textarea rows="10" cols="50" name="p_services" required></textarea></td>
+
+            </tr>
+            <tr>
+                <td>Payment Facilities</td>
+                <td><textarea rows="10" cols="50" name="p_fac"  required></textarea></td>
+            </tr>
+            <tr>
+                <td>Exp-Price</td>
+                <td><input type="number" name="p_price" min="0" value="{{ data.exp_price }}" required /></td>
+
+
+            </tr>
+            <tr>
+                <td>
+                    Project Image
+
+                </td>
+                <td>
+                    <input type="file" name="p_pic">
+                </td>
+
+
+            </tr>
+           
+            {% endfor %}
+
+            <tr>
+                <td> <input type="submit" name="submit" value="Submit" /></td>
+
+
+            </tr>
+
+
+
+
+        </table>
+
+
+</form>
+{% endblock content %}

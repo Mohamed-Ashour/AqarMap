@@ -1,12 +1,19 @@
 $(function(){
 	//$('.nav-tabs').tab();
-	$('.ts').click(function(){
+/*	$('.ts').click(function(){
 		$('.ts').each(function(i){
 			$(this).removeClass('active');
 		});
 		$(this).addClass('active');
 	});
 
+  */
+
+  $(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
+  
     $('.Hts').click(function(){
 		$('.Hts').each(function(i){
 			$(this).removeClass('active');
@@ -14,6 +21,7 @@ $(function(){
 		$(this).addClass('active');
 	});
 
+    $('#id_city').change();
 	$('#id_city').change(function(){
         if($('#id_city').val() == "cairo"){
             $('#area').remove();
@@ -30,6 +38,8 @@ $(function(){
             $('#area_lable').remove();
         }
     });
+
+    $('#id_city').change();
 
     $('#min_price').change(function(){
         min_price = parseInt($('#min_price').val());

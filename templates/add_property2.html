@@ -1,0 +1,95 @@
+{% extends "layoutINside.html" %}
+  <head>
+        <meta charset="utf-8">
+        <title>{% block title %} title{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+    </head>
+
+{% block content %}
+<h1>List Project Property</h1>
+
+
+<br>
+    <br><br><br><br><br>
+
+
+
+
+    <div class="container">
+
+  <form role="form" action="/add_project_property/" method="POST" enctype="multipart/form-data">
+       {% csrf_token %}
+    <div class="form-group" class="col-lg-12">
+        <div class="col-lg-6">Listing Type:</div>
+        <div class="col-lg-6" >Listing Section:</div>
+
+
+    </div>
+      <div class="col-lg-12">
+          <div class="col-lg-6">
+              <select name="listing_type" class="form-control" required>
+            <option value="Apartment">Apartment</option>
+            <option value="Duplex">Duplex</option>
+            <option value="Studio">Studio</option>
+            <option value="House">House</option>
+            <option value="Chalet">Chalet</option>
+            <option value="Furnished Apartment">Furnished Apartment</option>
+            <option value="Form">Form</option>
+            <option value="Office">Office</option>
+            <option value="Clinic">Clinic</option>
+            <option value="Storage">Storage</option>
+             <option value="Villa">Villa</option>
+            <option value="Palace">Palace</option>
+        </select>
+    </div>
+          <div class="col-lg-6">
+              <select name="List_Section" required  class="form-control" >
+            <option value="For Sale">For Sale</option>
+            <option value="For Rent">For Rent</option>
+        </select>
+
+          </div>
+  </div>
+      <div>
+          <div class="col-lg-12">
+              Location
+          </div>
+
+          <div class="col-lg-12">
+              <div class="col-lg-4"> <input type="text" class="form-control " name="city" placeholder="Enter City Name" required></div>
+              <div class="col-lg-4"><input type="text" class="form-control " name="area" placeholder="Enter Area Name" required></div>
+              <div class="col-lg-4"><input type="text" class="form-control " name="Street" placeholder="Enter Street Name" required></div>
+
+          </div>
+          <div>
+
+          </div>
+      </div>
+
+<div class="row col-lg-12">
+      <div align="center">
+            <br>
+      <br>
+
+
+          <input class=" btn btn-primary" type="submit" name="submit" value="Submit"/>
+      </div>
+     </div>
+
+  </form>
+</div>
+
+
+        </table>
+
+
+</form>
+{% endblock content %}

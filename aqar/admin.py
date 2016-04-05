@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import proj, pr_property, property, user_profile,notifier
+from .models import proj, pr_property, property, UserProfile, notifier, DelListing
 
 class DisplayAdminProperty(admin.ModelAdmin):
     list_display = ['title']
@@ -8,9 +8,9 @@ class DisplayAdminProperty(admin.ModelAdmin):
 class DisplayAdminProject(admin.ModelAdmin):
     list_display = ['Pro_Name']
 
-
-admin.site.register(user_profile)
 admin.site.register(property, DisplayAdminProperty)
 admin.site.register(proj, DisplayAdminProject)
 admin.site.register(pr_property)
+admin.site.register(UserProfile)
 admin.site.register(notifier)
+admin.site.register(DelListing)

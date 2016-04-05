@@ -1,16 +1,66 @@
-{% extends "layout.html" %}
+{% extends "layoutINside.html" %}
 {% load staticfiles %}
 
 {% block title %} title {% endblock %}
 
 {% block content %}
 
+    <h1>Aqar Map</h1>
+    <br>
+
+    <ul class="nav nav-tabs nav-justified">
+      <li role="presentation" class="active"><a href="#">Proprties</a></li>
+      <li role="presentation"><a href="projects">Projects</a></li>
+    </ul>
+    <br>
+
+    <form action="properties" class="form-inline" method="post">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form }}
+
+
+            <select name="min_price" id="min_price" class="form-control margin_10">
+                <option value="0">(Min Price)</option>
+                <option class="min_option min_100" label="100,000" value="100000">100,000</option>
+                <option class="min_option min_250" label="250,000" value="250000">250,000</option>
+                <option class="min_option min_500" label="500,000" value="500000">500,000</option>
+                <option class="min_option min_750" label="750,000" value="750000">750,000</option>
+                <option class="min_option min_1000" label="1,000,000" value="1000000">1,000,000</option>
+                <option class="min_option min_2000" label="2,000,000" value="2000000">2,000,000</option>
+                <option class="min_option min_5000" label="5,000,000" value="5000000">5,000,000</option>
+            </select>
+
+            <select name="max_price" id="max_price" class="form-control margin_10">
+                <option value="100000000">(Max Price)</option>
+                <option class="max_option max_100" label="100,000" value="100000">100,000</option>
+                <option class="max_option max_250" label="250,000" value="250000">250,000</option>
+                <option class="max_option max_500" label="500,000" value="500000">500,000</option>
+                <option class="max_option max_750" label="750,000" value="750000">750,000</option>
+                <option class="max_option max_1000" label="1,000,000" value="1000000">1,000,000</option>
+                <option class="max_option max_2000" label="2,000,000" value="2000000<">2,000,000</option>
+                <option class="max_option max_5000" label="5,000,000" value="5000000">5,000,000</option>
+            </select><br><br>
+
+            <input type="submit" value="Search" class="form-control btn-primary margin_10 submit_btn">
+
+        </div>
+    </form><br><br>
+
+
+
     {% for property in properties %}
-        <li>
-            <a href="properties/{{ property.id }}">
-                {{ property.title }}
-            </a>
-        </li>
+        <div class="col-md-3 item">
+            <div>
+                <a href="properties/{{ property.id }}">
+                <img src="{{ MEDIA_URL }}/photos/{{ data.img }}" width="200" height="200">
+                   
+                    <h4 class="text-center"><strong>{{ property.title }}</strong></h4>
+                </a>
+            </div>
+            <span class="price">{{ property.price }} EGP</span>
+            <a href="properties/{{ property.id }}" class="btn btn-primary details" >Details</a>
+        </div>
     {% endfor %}
 
 {% endblock content %}

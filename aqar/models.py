@@ -2,11 +2,14 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 category_ops=(('apartment','Apartment'), ('building', 'Building'), ('other', 'Other'), ('land', 'Land'),
               ('office', 'Office'), ('store', 'Store'), ('villa', 'Villa'))
-type_ops=(('for_sell','For Rell'), ('for_rent', 'For Rent'),)
+
+property_type_ops=(('for_sell','For Sell'), ('for_rent', 'For Rent'),)
+
+seller_type_ops=(('private_owner','Private Owner'), ('broker', 'Broker'),('real_estate_company', 'Real Estate Company'))
 
 city_ops=(('cairo', 'Greater Cairo'), ('alexandria', 'Alexandria'), ('Ain El Sokhna', 'Ain El Sokhna'),
           ('Hurghada / Red Sea', 'Hurghada / Red Sea'), ('Sharm el Sheikh', 'Sharm el Sheikh'),
@@ -18,48 +21,40 @@ city_ops=(('cairo', 'Greater Cairo'), ('alexandria', 'Alexandria'), ('Ain El Sok
           ('Kafr el-Sheikh', 'Kafr el-Sheikh'), ('Bani Suef', 'Bani Suef'), ('El minia', 'El minia'),
           ('New Valley', 'New Valley'), ('Qalyubia / Banha', 'Qalyubia / Banha'),)
 
-# area_ops=(('6th Of October', '6th Of October'), ('El Sheikh Zayed City', 'El Sheikh Zayed City'),
-#           ('Heliopolis', 'Heliopolis'), ('Nasr City', 'Nasr City'), ('El Maadi', 'El Maadi'),
-#           ('El Shorouk & New Heliopolis', 'El Shorouk & New Heliopolis'), ('El Oubour', 'El Oubour'),
-#           ('El Hadabh El Wosta', 'El Hadabh El Wosta'), ('Rehab & Madinaty', 'Rehab & Madinaty'), ('Faisal', 'Faisal'),
-#           ('Alex-Cairo Desert Road', 'Alex-Cairo Desert Road'), ('El Zamalek', 'El Zamalek'),
-#           ('El Mohandesen', 'El Mohandesen'), ('Dokki', 'Dokki'), ('El Haram', 'El Haram'),
-#           ('El Jizah district', 'El Jizah district'), ('Mokattam', 'Mokattam'), ('Helwan', 'Helwan'),
-#           ('Ain Shams', 'Ain Shams'), ('Badr City', 'Badr City'), ('10th of Ramadan', '10th of Ramadan'),
-#           ('Garden City', 'Garden City'), ('Downtown', 'Downtown'), ('El Zaytun', 'El Zaytun'),
-#           ('EL Koba Gardens', 'EL Koba Gardens'), ('Hadayek El Ahram', 'Hadayek El Ahram'), ('Shoubra', 'Shoubra'),
-#           ('Imbaba', 'Imbaba'), ('El Agouza', 'El Agouza'), ('Manial', 'Manial'),  ('El Abbasiya', 'El Abbasiya'),
-#           ('15th of May', '15th of May'), ('Other Neighborhoods', 'Other Neighborhoods'),)
 
 street_ops=(('', ''), ('', ''),)
 
 # Create your models here.
-class user_profile(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE)
-    phone=models.IntegerField()
-    currancy=models.CharField(max_length=100)
-    type=models.CharField(max_length=100)
-    country=models.CharField(max_length=100)
+class UserProfile(AbstractUser):
+    # user=models.OneToOneField(User, on_delete=models.CASCADE,related_name='user_profile')
+    phone=models.IntegerField(null=True)
+    currancy=models.CharField(max_length=100,null=True)
+    type=models.CharField(max_length=100,null=True)
+    country=models.CharField(max_length=100,null=True)
+    user_photo = models.ImageField(null=True, blank=True, 
+                                    width_field="img_width", height_field="img_height")
+    img_width = models.IntegerField(default=0)
+    img_height = models.IntegerField(default=0)
 
 class property(models.Model):
-    user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id=models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category=models.CharField(max_length=100, choices=category_ops, blank=False)
-    type=models.CharField(max_length=100, choices=type_ops)
-    sellerType=models.CharField(max_length=100)
-    size=models.CharField(max_length=100)
+    type=models.CharField(max_length=100, choices=property_type_ops)
+    sellerType=models.CharField(max_length=100, choices=seller_type_ops)
+    size=models.IntegerField()
     price=models.IntegerField()
     title=models.CharField(max_length=300)
-    description=models.CharField(max_length=500)
+    description=models.TextField()
     city=models.CharField(max_length=100, choices=city_ops)
     area=models.CharField(max_length=100)
     street=models.CharField(max_length=100)
     services=models.CharField(max_length=100)
     facilities=models.CharField(max_length=100)
-    picture=models.CharField(max_length=100)
-    payment=models.CharField(max_length=100)
+    picture=models.ImageField(upload_to="photos/",default="static/uploads/default.jpg", blank=True)
+    payment_method=models.CharField(max_length=100)
 
 class proj(models.Model):
-    user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id=models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     Pro_Name=models.CharField(max_length=200)
     detailes=models.CharField(max_length=500)
     location=models.CharField(max_length=100)
@@ -88,14 +83,14 @@ class pr_property(models.Model):
     floor=models.IntegerField(default=0)
     Baths=models.IntegerField(default=0)
     year_bulit=models.IntegerField(default=0)
-    finish_type=models.IntegerField(default=0)
+    finish_type=models.CharField(max_length=100)
     img = models.ImageField(upload_to="photos/",null=True, blank=True)
     video=models.URLField(default=True)
     phone=models.IntegerField(default=0)
     payment=models.CharField(max_length=100)
 
 class notifier(models.Model):
-    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    user_id=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     location=models.CharField(max_length=100)
     property_type=models.CharField(max_length=100)
     section=models.CharField(max_length=100)
@@ -104,13 +99,14 @@ class notifier(models.Model):
 
 
 class DelListing(models.Model):
-     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+     user_id=models.ForeignKey(UserProfile, on_delete=models.CASCADE)
      title=models.CharField(max_length=300)
      propertyType=models.CharField(max_length=100)
      size=models.IntegerField()
      price=models.IntegerField()
+
 #class user_Notifier(models.Model):
- #   user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+ #   user_id=models.ForeignKey(UserProfile, on_delete=models.CASCADE)
   #  pro_type=models.CharField(max_length=100)
    # pro_city=models.CharField(max_length=100)
     #pro_area=models.CharField(max_length=100)

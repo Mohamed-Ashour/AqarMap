@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+<head>
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+        <link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+{% block title %} Show Product Details {% endblock %}
+{% block content %}
+   <div class="container">
+   <div id="project" style="border: 1px solid lightgray;">
+
+          <h3>{{ project.project_Name }}</h3>
+          <h4 style="color: lightgray">{{ project.Location }}</h4>
+          
+
+   </div>
+   <div>
+       <br>
+       <br>
+       <br>
+       <table class="table table-hover" style="border: 1px solid lightgray; ">
+       {% for data in prop_project%}
+       <img src="{{ MEDIA_URL }}/photos/{{ data.img }}" width="500" height="200">
+        {% endfor %}
+
+           <th>Property Type</th>
+           <th>Price</th>
+           <th>Size</th>
+           <th>Details</th>
+           {% for data in prop_project %}
+            
+           
+               <tr>
+               <td>{{ data.prop_type }}</td>
+               <td>{{ data.price }}</td>
+               <td>{{ data.size }}</td>
+               <td><a href="/property_details/{{ data.id }}"><input type="submit" class="btn btn-primary"  value="Details"></a></td>
+               </tr>
+           {% endfor %}
+
+
+
+
+       </table>
+
+   </div>
+   <br>
+   <br>
+   <h1 style="color: #b92c28">Listing Descriptions</h1>
+   <br>
+   <br>
+   <div class="list">
+       <div class="col-lg-1"></div>
+
+              <h3>Project Description:</h3>
+
+       <div class="col-lg-2"></div>
+               <div  class="col-lg-10">
+                <h4>{{ project.Description }}</h4>
+               </div>
+        <div class="col-lg-1"></div>
+
+
+              <h3>Services:</h3>
+
+       <div class="col-lg-2"></div>
+               <div class="col-lg-10">
+                <h4>{{ project.Services}}</h4>
+               </div>
+
+        <div class="col-lg-1"></div>
+
+              <h3>Payment Facilities:</h3>
+
+       <div class="col-lg-2"></div>
+               <div  class="col-lg-10">
+                <h4>{{ project.Payment}}</h4>
+               </div>
+       <div class="col-lg-1"></div>
+
+              <h3>Locations:</h3>
+
+       <div class="col-lg-2"></div>
+               <div  class="col-lg-10">
+                <h4>{{ project.Location}}</h4>
+               </div>
+
+
+
+
+   </div>
+
+
+
+   </div>
+
+
+{% endblock content %}

@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'aqar',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -71,6 +77,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'AqarMap.wsgi.application'
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+SITE_ID = 1
 
 
 # Database
@@ -124,7 +138,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'global_media')
 STATICFILES_DIR = (
     os.path.join(os.path.dirname(__file__) , 'static'),
 )
+LOGIN_REDIRECT_URL = '/listing'
+SOCIALACCOUNT_PROVIDERS = \
+    {'facebook':
+       {'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'FIELDS': [
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'gender',],
+        'EXCHANGE_TOKEN': True,
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4'}}
+
+
+EMAIL_BACKEND= 'django.core.mail.backends.console.EmailBackend'
+AUTH_USER_MODEL = 'aqar.UserProfile'
+ACCOUNT_SIGNUP_FORM_CLASS = 'aqar.forms.UserRegisteration'
+
+
+MEDIA_ROOT = 'photos/'
+MEDIA_URL = '/photos/'
