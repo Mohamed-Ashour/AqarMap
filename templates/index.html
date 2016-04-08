@@ -4,11 +4,10 @@
 {% block title %} Aqar Map {% endblock %}
 
 {% block search %}
-    <h1>Aqar Map</h1><br>
-
+    <h1><a href="{% url 'index' %}">Aqar Map</a></h1>
     <ul class="nav nav-tabs nav-justified">
-      <li role="presentation" class="active"><a href="#">Proprties</a></li>
-      <li role="presentation"><a href="/get_data/">Projects</a></li>
+      <li role="presentation" ><a href="properties">Proprties</a></li>
+      <li role="presentation"><a href="get_data">Projects</a></li>
     </ul>
     <br>
 

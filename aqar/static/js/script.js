@@ -140,4 +140,14 @@ $(function(){
         }
     });
 
+    $('input[type="text"]').addClass('form-control');
+    $('input[type="email"]').addClass('form-control');
+    $('input[type="password"]').addClass('form-control');
+    $('input[type="number"]').addClass('form-control');
+    $('input[type="file"]').addClass('form-control');
+    $('input[type="submit"]').addClass('btn btn-primary');
+    $('textarea').addClass('form-control');
+    $('select').addClass('form-control');
+    $('label').addClass('');
+
 });

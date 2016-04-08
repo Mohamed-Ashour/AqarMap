@@ -22,7 +22,6 @@ city_ops=(('cairo', 'Greater Cairo'), ('alexandria', 'Alexandria'), ('Ain El Sok
           ('New Valley', 'New Valley'), ('Qalyubia / Banha', 'Qalyubia / Banha'),)
 
 
-street_ops=(('', ''), ('', ''),)
 
 # Create your models here.
 class UserProfile(AbstractUser):
@@ -50,7 +49,7 @@ class property(models.Model):
     street=models.CharField(max_length=100)
     services=models.CharField(max_length=100)
     facilities=models.CharField(max_length=100)
-    picture=models.ImageField(upload_to="photos/",default="static/uploads/default.jpg", blank=True)
+    picture=models.ImageField(upload_to="photos/",null=True, blank=True)
     payment_method=models.CharField(max_length=100)
 
 class proj(models.Model):

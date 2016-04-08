@@ -16,7 +16,7 @@ def index(request):
 
 # searching for properties
 def properties(request):
-    if 'category' in request.POST:
+    if request.method == 'POST':
         pcategory = request.POST['category']
         ptype = request.POST['type']
         pcity = request.POST['city']
@@ -67,7 +67,7 @@ def project_details(request, id):
 def add_property(request):
     if request.method == "POST":
 
-        form = prop_insert_form(request.POST)
+        form = prop_insert_form(request.POST, request.FILES)
         if form.is_valid():
             prop = form.save(commit=False)
             prop.user_id = request.user
@@ -87,7 +87,7 @@ def edit_property(request, id):
     except:
         raise Http404("Project not found")
     if request.method == "POST":
-        form = prop_insert_form(request.POST, instance=prop)
+        form = prop_insert_form(request.POST, request.FILES, instance=prop)
         if form.is_valid():
             prop = form.save(commit=False)
             prop.user_id = request.user
@@ -264,11 +264,11 @@ def setting(request):
 
 
 # show project property details
-@login_required
-def property_details(request, uid):
-    get_pro = pr_property.objects.all().filter(project_id_id=uid)
-    get_project = proj.objects.all().filter(id=uid)
-    return render(request, "Display_Project_data.html", {"project_data": get_pro, "proj_data": get_project})
+# @login_required
+# def property_details(request, uid):
+#     get_pro = pr_property.objects.all().filter(project_id_id=uid)
+#     get_project = proj.objects.all().filter(id=uid)
+#     return render(request, "Display_Project_data.html", {"project_data": get_pro, "proj_data": get_project})
 
 
 ##################################################EDit project##########################################################

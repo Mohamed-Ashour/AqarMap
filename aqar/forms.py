@@ -39,22 +39,7 @@ class prop_insert_form(forms.ModelForm):
             'picture',
         )
 
-    def __init__(self, *args, **kwargs):
-        super(prop_insert_form, self).__init__(*args, **kwargs)
-        self.fields['category'].widget.attrs['class'] = 'form-control'
-        self.fields['type'].widget.attrs['class'] = 'form-control'
-        self.fields['city'].widget.attrs['class'] = 'form-control'
-        self.fields['area'].widget.attrs['class'] = 'form-control'
-        self.fields['street'].widget.attrs['class'] = 'form-control'
-        self.fields['sellerType'].widget.attrs['class'] = 'form-control'
-        self.fields['title'].widget.attrs['class'] = 'form-control'
-        self.fields['description'].widget.attrs['class'] = 'form-control'
-        self.fields['services'].widget.attrs['class'] = 'form-control'
-        self.fields['facilities'].widget.attrs['class'] = 'form-control'
-        self.fields['size'].widget.attrs['class'] = 'form-control'
-        self.fields['price'].widget.attrs['class'] = 'form-control'
-        self.fields['payment_method'].widget.attrs['class'] = 'form-control'
-        self.fields['picture'].widget.attrs['class'] = 'form-control'
+
 
 class UserRegisteration(forms.ModelForm):
     class Meta:

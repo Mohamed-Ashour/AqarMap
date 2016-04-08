@@ -10,7 +10,7 @@
 
     <ul class="nav nav-tabs nav-justified">
       <li role="presentation" class="active"><a href="#">Proprties</a></li>
-      <li role="presentation"><a href="projects">Projects</a></li>
+      <li role="presentation"><a href="get_data">Projects</a></li>
     </ul>
     <br>
 
@@ -53,7 +53,7 @@
         <div class="col-md-3 item">
             <div>
                 <a href="properties/{{ property.id }}">
-                <img src="{{ MEDIA_URL }}/photos/{{ data.img }}" width="200" height="200">
+                <img src="{{ MEDIA_URL }}/photos/{{ property.picture }}" width="250" height="200">
                    
                     <h4 class="text-center"><strong>{{ property.title }}</strong></h4>
                 </a>
